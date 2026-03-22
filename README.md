@@ -1,18 +1,12 @@
-# Livret-3
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-
-  <!-- 🔥 IMPORTANT POUR MOBILE -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Accueil Étudiants IADE - ICP</title>
+  <title>Accueil IADE - ICP</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -35,6 +29,37 @@
       font-size: 22px;
     }
 
+    /* 🔐 LOGIN */
+    .login {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+
+    input {
+      padding: 12px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 220px;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #3498db;
+      color: white;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
     .container {
       padding: 10px;
       width: 100%;
@@ -54,8 +79,22 @@
       font-size: 18px;
     }
 
-    ul {
-      padding-left: 18px;
+    /* 🔥 BOUTONS PDF */
+    .btn {
+      display: block;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      padding: 16px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .btn:active {
+      background: #2c80b4;
     }
 
     footer {
@@ -73,6 +112,17 @@
   <h1>Bienvenue à l’ICP ❤️</h1>
   <p>Bloc opératoire – Accueil des étudiants IADE</p>
 </header>
+
+<!-- 🔐 PAGE DE CONNEXION -->
+<div id="loginPage" class="login">
+  <h2>Accès réservé</h2>
+  <input type="password" id="password" placeholder="Mot de passe">
+  <button onclick="checkPassword()">Entrer</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<!-- 🔓 CONTENU -->
+<div id="content" class="hidden">
 
 <div class="container">
 
@@ -108,12 +158,20 @@
   </div>
 
   <div class="card">
-    <h2>📚 Documents utiles</h2>
-    <ul>
-      <li><a href="#">Protocoles anesthésie</a></li>
-      <li><a href="#">Check-list sécurité</a></li>
-      <li><a href="#">Fiche urgences</a></li>
-    </ul>
+    <h2>📄 Accès rapide aux documents</h2>
+
+    <a class="btn" href="docs/protocoles.pdf" target="_blank">
+      📘 Protocoles anesthésie
+    </a>
+
+    <a class="btn" href="docs/checklist.pdf" target="_blank">
+      ✅ Check-list sécurité
+    </a>
+
+    <a class="btn" href="docs/urgence.pdf" target="_blank">
+      🚨 Urgences anesthésie
+    </a>
+
   </div>
 
   <div class="card">
@@ -136,6 +194,24 @@
 <footer>
   Institut Cœur Poumon – Bloc opératoire
 </footer>
+
+</div>
+
+<script>
+function checkPassword() {
+  const password = document.getElementById("password").value;
+
+  // 🔑 CHANGE TON MOT DE PASSE ICI
+  const correctPassword = "iadeicp543";
+
+  if (password === correctPassword) {
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+  } else {
+    document.getElementById("error").innerText = "Mot de passe incorrect";
+  }
+}
+</script>
 
 </body>
 </html>
