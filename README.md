@@ -569,7 +569,144 @@ html, body {
   <a href="#retour">📝</a>
   <a href="pdf/telephones.pdf">☎️</a>
 </div>
+<section class="hero">
+  <div class="overlay">
+    <h1>Bienvenue au bloc opératoire</h1>
+    <p>Votre parcours IADE commence ici</p>
 
+    <div class="buttons">
+      <a href="TON-LIEN-SITE" target="_blank" class="btn btn-light">
+        🌍 Accès guide étudiant
+      </a>
+
+      <a href="TON-LIEN-SHAREPOINT" target="_blank" class="btn btn-dark">
+        🔐 Accès contenu complet
+      </a>
+    </div>
+
+    <p class="info">
+      Certains contenus nécessitent un accès au réseau hospitalier
+    </p>
+  </div>
+</section>
+
+<section class="quick-access">
+  <div class="card">
+    🗺️
+    <h3>Plan du bloc</h3>
+  </div>
+
+  <div class="card">
+    📅
+    <h3>Organisation</h3>
+  </div>
+
+  <div class="card">
+    📘
+    <h3>Parcours étudiant</h3>
+  </div>
+
+  <div class="card">
+    📞
+    <h3>Contacts</h3>
+  </div>
+</section>
+
+<style>
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.overlay {
+  max-width: 700px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  opacity: 0.9;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  margin: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-light {
+  background: #22c55e;
+  color: white;
+}
+
+.btn-light:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background: #1e3a8a;
+  color: white;
+}
+
+.btn-dark:hover {
+  background: #172554;
+  transform: translateY(-2px);
+}
+
+.info {
+  margin-top: 20px;
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+/* QUICK ACCESS */
+.quick-access {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  background: #f9fafb;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 15px;
+  font-size: 1.2em;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+</style>
 <div id="content" class="hidden">
 
 <div class="container">
