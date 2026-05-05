@@ -1,44 +1,59 @@
-  background-size: cover;
-  background-position: center;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil IADE - ICP</title>
+
+<style>
+
+/* =========================
+RESET PROPRE
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* =========================
+BASE
+========================= */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f7f9fb;
+  color: #2c3e50;
+}
+
+/* =========================
+HEADER
+========================= */
+header {
+  background: linear-gradient(135deg, #5dade2, #48c9b0);
   color: white;
+  padding: 20px;
   text-align: center;
-  padding: 60px 20px;
+  border-radius: 0 0 16px 16px;
 }
 
-.hero h1 {
-  font-size: 2em;
+header h1 {
+  font-size: 20px;
 }
 
-.hero p {
-  margin-top: 10px;
+header p {
+  font-size: 13px;
   opacity: 0.9;
 }
 
 /* =========================
-BUTTONS
+CONTAINER
 ========================= */
-.btn {
-  display: inline-block;
-  padding: 14px 18px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  margin: 8px;
-  transition: 0.2s;
-}
-
-.btn-green { background: #22c55e; color: white; }
-.btn-blue { background: #1e3a8a; color: white; }
-.btn:hover { transform: translateY(-2px); }
-
-/* =========================
-GRID
-========================= */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-  padding: 20px;
+.container {
+  padding: 15px;
 }
 
 /* =========================
@@ -47,21 +62,48 @@ CARDS
 .card {
   background: white;
   padding: 18px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 /* =========================
-SECTIONS TITRES
+BUTTONS
 ========================= */
-.section-title {
-  padding: 20px;
-  font-size: 18px;
+.btn {
+  display: block;
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 12px;
+  text-align: center;
   font-weight: bold;
 }
 
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+/* variants */
+.btn.urgence { background: #e74c3c; }
+.btn.bilan { background: #27ae60; }
+
 /* =========================
-POPUPS
+GRID
+========================= */
+.cards-row {
+  display: flex;
+  gap: 10px;
+}
+
+.cards-row .card {
+  flex: 1;
+}
+
+/* =========================
+POPUP
 ========================= */
 .popup {
   position: fixed;
@@ -70,6 +112,7 @@ POPUPS
   display: none;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .popup.show {
@@ -79,9 +122,19 @@ POPUPS
 .popup-content {
   background: white;
   padding: 20px;
-  border-radius: 15px;
-  max-width: 500px;
+  border-radius: 16px;
   width: 90%;
+  max-width: 500px;
+}
+
+/* =========================
+CLOSE BTN
+========================= */
+.close-btn {
+  float: right;
+  border: none;
+  background: transparent;
+  font-size: 18px;
 }
 
 /* =========================
@@ -91,11 +144,28 @@ MENU BAS
   position: fixed;
   bottom: 0;
   width: 100%;
+  max-width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
   background: white;
   display: flex;
   justify-content: space-around;
   padding: 10px;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+/* =========================
+UTILITIES
+========================= */
+.hidden {
+  display: none;
+}
+
+.rouge { color: red; font-weight: bold; }
+
+.hint {
+  font-size: 12px;
+  color: gray;
 }
 
 </style>
@@ -103,166 +173,103 @@ MENU BAS
 
 <body>
 
-<!-- =========================
-HERO + DOUBLE ACCÈS
-========================= -->
-<section class="hero">
-  <h1>Bienvenue au bloc opératoire</h1>
-  <p>Institut Cœur Poumon – Parcours IADE</p>
+<!-- HEADER -->
+<header>
+  <h1>Bienvenue à l'ICP</h1>
+  <p>Bloc opératoire – Accueil des étudiants IADE</p>
+</header>
 
-  <div>
-    <a href="https://acceuil-icp-eiade.github.io/Livret/" class="btn btn-green">🌍 Guide étudiant</a>
-    <a href="TON-LIEN-SHAREPOINT" class="btn btn-blue">🔐 Accès complet</a>
+<!-- LOGIN -->
+<div id="loginPage" class="container">
+  <div class="card">
+    <h2>Accès réservé</h2>
+    <input type="password" id="password" placeholder="Mot de passe">
+    <button class="btn" onclick="checkPassword()">Entrer</button>
+    <p id="error" style="color:red;"></p>
   </div>
+</div>
 
-  <p style="font-size:12px; opacity:0.7;">
-    Certains contenus nécessitent un accès réseau interne
-  </p>
-</section>
+<!-- DISCLAIMER -->
+<div id="disclaimer" class="popup">
+  <div class="popup-content">
+    <h3>⚠️ Avertissement</h3>
+    <p>Site pédagogique non officiel.</p>
+    <button class="btn" onclick="acceptDisclaimer()">Continuer</button>
+  </div>
+</div>
 
-<!-- =========================
-ACCUEIL MESSAGE
-========================= -->
-<div class="card" style="margin:15px;">
+<!-- CONTENU -->
+<div id="content" class="hidden container">
+
+<!-- WELCOME -->
+<div class="card">
   <h2>👋 Message de bienvenue</h2>
-  <p>
-    Toute l’équipe du bloc opératoire de l’Institut Cœur Poumon est ravie de vous accueillir.
-  </p>
-  <p>
-    Ici vous êtes là pour apprendre, progresser et poser toutes vos questions.
-  </p>
-  <p><strong>👉 Il n’y a pas de mauvaises questions.</strong></p>
+  <p>Bienvenue au bloc opératoire de l’ICP.</p>
 </div>
 
-<!-- =========================
-ACCES RAPIDES
-========================= -->
-<div class="section-title">📌 Accès rapides</div>
+<!-- ACCES RAPIDES -->
+<div class="cards-row">
 
-<div class="grid">
-  <div class="card clickable" onclick="openPopup('jour')">📍 Premier jour</div>
-  <div class="card clickable" onclick="openPopup('vie')">🏥 Vie pratique</div>
-  <div class="card clickable" onclick="openPopup('orga')">🩺 Organigramme</div>
-  <div class="card clickable" onclick="openPopup('ref')">♻️ Référents</div>
-</div>
-
-<!-- =========================
-POPUP JOUR 1
-========================= -->
-<div id="jour" class="popup">
-  <div class="popup-content">
-    <h2>📍 Premier jour</h2>
-    <ul>
-      <li>RDV 8h salle de réveil</li>
-      <li>Tenue de bloc obligatoire</li>
-      <li>Badge + documents de stage</li>
-      <li>Fiche de suivi à compléter</li>
-    </ul>
-    <button onclick="closePopup('jour')">Fermer</button>
+  <div class="card clickable" onclick="openPopup('jour')">
+    📍 Premier jour
   </div>
-</div>
 
-<!-- =========================
-POPUP VIE PRATIQUE
-========================= -->
-<div id="vie" class="popup">
-  <div class="popup-content">
-    <h2>🏥 Vie pratique</h2>
-    <ul>
-      <li>Vestiaires avec casiers</li>
-      <li>Salle de pause</li>
-      <li>Self niveau -2</li>
-      <li>Relais H niveau 0</li>
-    </ul>
-    <button onclick="closePopup('vie')">Fermer</button>
+  <div class="card clickable" onclick="openPopup('vie')">
+    🏥 Vie pratique
   </div>
+
 </div>
 
-<!-- =========================
-PLAN
-========================= -->
-<div class="card" style="margin:15px;">
+<!-- PLAN -->
+<div class="card">
   <h2>🗺️ Plan du bloc</h2>
-  <p>Consultez le plan pour vous repérer facilement.</p>
-  <a class="btn btn-blue" href="pdf/plan2.pdf" target="_blank">📄 Ouvrir le plan</a>
+  <a class="btn" href="pdf/plan2.pdf" target="_blank">Voir le plan</a>
 </div>
 
-<!-- =========================
-VIDEO
-========================= -->
-<div class="card" style="margin:15px;">
-  <h2>🎥 Visite du service</h2>
-  <p>Disponible prochainement</p>
+<!-- URGENCES -->
+<div class="card">
+  <h2>🚨 Protocoles</h2>
+  <a class="btn urgence" href="pdf/arret.pdf">Arrêt cardiaque</a>
+  <a class="btn urgence" href="pdf/hemorragie.pdf">Hémorragie</a>
 </div>
 
-<!-- =========================
-ORGANIGRAMME
-========================= -->
-<div id="orga" class="popup">
-  <div class="popup-content">
-    <h2>🩺 Organigramme</h2>
-    <p><strong>Anesthésie :</strong> Dr Desbordes</p>
-    <p><strong>Réanimation :</strong> Pr Moussa</p>
-    <p><strong>SIPO :</strong> Dr Robin</p>
-    <p><strong>Cardio :</strong> Pr Vincentelli</p>
-    <button onclick="closePopup('orga')">Fermer</button>
-  </div>
-</div>
-
-<!-- =========================
-REFERENTS
-========================= -->
-<div id="ref" class="popup">
-  <div class="popup-content">
-    <h2>♻️ Référents</h2>
-    <p>Cadre : Mme Reumaux</p>
-    <p>IADE référente : Mme Hennache</p>
-    <p>Équipe IADE référente disponible au quotidien</p>
-    <button onclick="closePopup('ref')">Fermer</button>
-  </div>
-</div>
-
-<!-- =========================
-DOCUMENTS
-========================= -->
-<div class="card" style="margin:15px;">
-  <h2>📄 Documents</h2>
-  <a class="btn btn-blue" href="pdf/COEUR.pdf" target="_blank">🫀 Cœur ouvert</a>
-  <a class="btn btn-blue" href="pdf/CEC.pdf" target="_blank">⚙️ CEC</a>
-  <a class="btn btn-blue" href="pdf/VASCULAIRE.pdf" target="_blank">🩸 Vasculaire</a>
-</div>
-
-<!-- =========================
-URGENCES
-========================= -->
-<div class="card" style="margin:15px;">
-  <h2>🚨 Protocoles d’urgence</h2>
-  <a class="btn btn-blue" href="pdf/arret.pdf">❤️ Arrêt cardiaque</a>
-  <a class="btn btn-blue" href="pdf/hemorragie.pdf">🩸 Hémorragie</a>
-  <a class="btn btn-blue" href="pdf/anaphylaxie.pdf">⚠️ Anaphylaxie</a>
-</div>
-
-<!-- =========================
-BILAN + RETOUR
-========================= -->
-<div class="card" style="margin:15px;">
+<!-- RETOUR -->
+<div class="card">
   <h2>📝 Retour de stage</h2>
-  <a class="btn btn-green" href="https://forms.gle/4ATLvfYK83cmkXiN7" target="_blank">
+  <a class="btn bilan" href="https://forms.gle/4ATLvfYK83cmkXiN7" target="_blank">
     Donner mon avis
   </a>
 </div>
 
-<!-- =========================
-MENU BAS
-========================= -->
+</div>
+
+<!-- POPUPS -->
+<div id="jour" class="popup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup('jour')">✖️</button>
+    <h3>Premier jour</h3>
+    <p>RDV 8h salle de réveil</p>
+  </div>
+</div>
+
+<div id="vie" class="popup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup('vie')">✖️</button>
+    <h3>Vie pratique</h3>
+    <p>Vestiaires, pause, restauration</p>
+  </div>
+</div>
+
+<!-- MENU -->
 <div class="bottom-menu">
   <a href="#">📑</a>
   <a href="#">🗺</a>
-  <a href="#">🎥</a>
+  <a href="#">🚨</a>
   <a href="#">📝</a>
 </div>
 
 <script>
+
 function openPopup(id){
   document.getElementById(id).classList.add("show");
 }
@@ -270,6 +277,23 @@ function openPopup(id){
 function closePopup(id){
   document.getElementById(id).classList.remove("show");
 }
+
+function checkPassword(){
+  const pass = document.getElementById("password").value;
+
+  if(pass === "iadeicp543"){
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("disclaimer").classList.add("show");
+  } else {
+    document.getElementById("error").innerText = "Mot de passe incorrect";
+  }
+}
+
+function acceptDisclaimer(){
+  document.getElementById("disclaimer").classList.remove("show");
+  document.getElementById("content").classList.remove("hidden");
+}
+
 </script>
 
 </body>
