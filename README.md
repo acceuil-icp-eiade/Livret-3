@@ -6,7 +6,6 @@
 <title>Accueil IADE - ICP</title>
 
 <style>
-
 /* =========================
 RESET PROPRE
 ========================= */
