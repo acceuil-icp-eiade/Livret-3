@@ -1,36 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accueil IADE - ICP</title>
-
-<style>
-
-/* =========================
-RESET
-========================= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* =========================
-BASE
-========================= */
-body {
-  font-family: Arial, sans-serif;
-  background: #f9fafb;
-  color: #1f2937;
-}
-
-/* =========================
-HERO
-========================= */
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3');
   background-size: cover;
   background-position: center;
   color: white;
